@@ -4,27 +4,17 @@ void main() {
   runApp(const App());
 }
 
-// ============================================================
-// CORES
-// ============================================================
-
+// cores
 const Color azul = Color(0xFF2563EB);
 const Color azulEscuro = Color(0xFF1D4ED8);
 const Color azulClaro = Color(0xFFEFF6FF);
-
 const Color cinzaFundo = Color(0xFFF3F4F6);
 const Color cinzaTexto = Color(0xFF6B7280);
 const Color cinzaBorda = Color(0xFFE5E7EB);
-
 const Color vermelhoPanico = Color(0xFFDC2626);
 const Color vermelhoClaro = Color(0xFFFEF2F2);
-
 const Color amarelo = Color(0xFFF59E0B);
 const Color verde = Color(0xFF16A34A);
-
-// ============================================================
-// APP
-// ============================================================
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -33,41 +23,32 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       title: "Central de Segurança",
-
       theme: ThemeData(
         useMaterial3: true,
-
         colorScheme: ColorScheme.fromSeed(
           seedColor: azul,
           primary: azul,
         ),
-
         scaffoldBackgroundColor: cinzaFundo,
-
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           foregroundColor: Colors.black87,
           elevation: 0,
         ),
-
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: Colors.white,
-
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
             borderSide: BorderSide.none,
           ),
-
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
             borderSide: const BorderSide(
               color: cinzaBorda,
             ),
           ),
-
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
             borderSide: const BorderSide(
@@ -77,21 +58,17 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-
       routes: {
         "/login": (context) => const LoginPage(),
         "/registro": (context) => const RegistroPage(),
         "/home": (context) => const HomePage(),
       },
-
       initialRoute: "/login",
     );
   }
 }
 
-// ============================================================
-// LOGIN
-// ============================================================
+// login
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -99,13 +76,10 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
   final txtEmail = TextEditingController();
   final txtSenha = TextEditingController();
-
-  bool esconderSenha = true;
-
+  bool esconderSenha = true; 
   void entrar() {
     if (txtEmail.text.trim().isEmpty ||
         txtSenha.text.trim().isEmpty) {
@@ -116,7 +90,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       );
-
       return;
     }
 
@@ -125,15 +98,12 @@ class _LoginPageState extends State<LoginPage> {
       "/home",
     );
   }
-
   @override
   void dispose() {
     txtEmail.dispose();
     txtSenha.dispose();
-
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,36 +111,29 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(24),
-
             child: ConstrainedBox(
               constraints: const BoxConstraints(
                 maxWidth: 430,
               ),
-
               child: Column(
                 crossAxisAlignment:
                     CrossAxisAlignment.stretch,
-
                 children: [
                   Container(
                     width: 72,
                     height: 72,
-
                     decoration: BoxDecoration(
                       color: azul,
                       borderRadius:
                           BorderRadius.circular(20),
                     ),
-
                     child: const Icon(
                       Icons.shield_rounded,
                       color: Colors.white,
                       size: 40,
                     ),
                   ),
-
                   const SizedBox(height: 28),
-
                   const Text(
                     "Bem-vindo!",
                     style: TextStyle(
@@ -178,9 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-
                   const SizedBox(height: 8),
-
                   const Text(
                     "Acesse sua central de segurança.",
                     style: TextStyle(
@@ -188,34 +149,26 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 16,
                     ),
                   ),
-
                   const SizedBox(height: 30),
-
                   TextField(
                     controller: txtEmail,
                     keyboardType:
                         TextInputType.emailAddress,
-
                     decoration: const InputDecoration(
                       labelText: "E-mail",
                       prefixIcon:
                           Icon(Icons.email_outlined),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
                   TextField(
                     controller: txtSenha,
                     obscureText: esconderSenha,
-
                     decoration: InputDecoration(
                       labelText: "Senha",
-
                       prefixIcon: const Icon(
                         Icons.lock_outline,
                       ),
-
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -223,7 +176,6 @@ class _LoginPageState extends State<LoginPage> {
                                 !esconderSenha;
                           });
                         },
-
                         icon: Icon(
                           esconderSenha
                               ? Icons.visibility_outlined
@@ -232,20 +184,15 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 24),
-
                   SizedBox(
                     height: 52,
-
                     child: ElevatedButton(
                       onPressed: entrar,
-
                       style:
                           ElevatedButton.styleFrom(
                         backgroundColor: azul,
                         foregroundColor: Colors.white,
-
                         shape:
                             RoundedRectangleBorder(
                           borderRadius:
@@ -262,9 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 12),
-
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(
@@ -272,7 +217,6 @@ class _LoginPageState extends State<LoginPage> {
                         "/registro",
                       );
                     },
-
                     child: const Text(
                       "Criar uma conta",
                     ),
@@ -287,25 +231,19 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-// ============================================================
-// REGISTRO
-// ============================================================
+// registro
 
 class RegistroPage extends StatefulWidget {
   const RegistroPage({super.key});
-
   @override
   State<RegistroPage> createState() =>
       _RegistroPageState();
 }
-
 class _RegistroPageState extends State<RegistroPage> {
   final txtNome = TextEditingController();
   final txtEmail = TextEditingController();
   final txtSenha = TextEditingController();
-
   bool esconderSenha = true;
-
   void registrar() {
     if (txtNome.text.trim().isEmpty ||
         txtEmail.text.trim().isEmpty ||
@@ -317,25 +255,20 @@ class _RegistroPageState extends State<RegistroPage> {
           ),
         ),
       );
-
       return;
     }
-
     Navigator.pushReplacementNamed(
       context,
       "/home",
     );
   }
-
   @override
   void dispose() {
     txtNome.dispose();
     txtEmail.dispose();
     txtSenha.dispose();
-
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -347,14 +280,11 @@ class _RegistroPageState extends State<RegistroPage> {
           ),
         ),
       ),
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
-
         child: Column(
           crossAxisAlignment:
               CrossAxisAlignment.stretch,
-
           children: [
             const Text(
               "Crie sua conta",
@@ -363,9 +293,7 @@ class _RegistroPageState extends State<RegistroPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             const SizedBox(height: 8),
-
             const Text(
               "Preencha seus dados para continuar.",
               style: TextStyle(
@@ -373,9 +301,7 @@ class _RegistroPageState extends State<RegistroPage> {
                 fontSize: 16,
               ),
             ),
-
             const SizedBox(height: 30),
-
             TextField(
               controller: txtNome,
 
@@ -385,12 +311,9 @@ class _RegistroPageState extends State<RegistroPage> {
                     Icon(Icons.person_outline),
               ),
             ),
-
             const SizedBox(height: 16),
-
             TextField(
               controller: txtEmail,
-
               decoration: const InputDecoration(
                 labelText: "E-mail",
                 prefixIcon:
@@ -398,8 +321,7 @@ class _RegistroPageState extends State<RegistroPage> {
               ),
             ),
 
-            const SizedBox(height: 16),
-
+            const SizeBox(height: 16),
             TextField(
               controller: txtSenha,
 
@@ -433,7 +355,6 @@ class _RegistroPageState extends State<RegistroPage> {
 
             SizedBox(
               height: 52,
-
               child: ElevatedButton(
                 onPressed: registrar,
 
@@ -445,7 +366,6 @@ class _RegistroPageState extends State<RegistroPage> {
                 ),
               ),
             ),
-
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
